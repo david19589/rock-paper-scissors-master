@@ -24,8 +24,8 @@ function Home() {
   }, [ResultText]);
 
   return (
-    <div className="flex items-center flex-col pt-[32px] pb-[56px] px-[32px]">
-      <div className="flex justify-between items-center border-[3px] border-slate-500 rounded-sm w-full max-w-[700px] pl-[24px] pr-[12px] py-[24px] mb-[145px]">
+    <div className="flex items-center flex-col pt-[32px] pb-[56px] px-[32px] w-[100vw]">
+      <div className="flex justify-between items-center border-[3px] border-slate-500 rounded-lg w-full max-w-[700px] pl-[24px] pr-[12px] py-[24px] mb-[145px]">
         <img className="w-[116px] tablet:w-max" src={Logo} alt="Logo" />
         <div className="tablet:w-[150px] tablet:h-[114px] flex justify-center items-center flex-col w-[80px] h-[72px] rounded-lg bg-[#FFF] overflow-hidden">
           <h1 className="tablet:text-[16px] tablet:leading-[19.2px] tablet:tracking-[2.5px] text-[10px] font-[600] leading-[12px] tracking-[1.56px] text-[#2A45C2]">
@@ -49,7 +49,7 @@ function Home() {
                 setRockState(true);
                 setShowResults(true);
               }}
-              className="w-full h-full mobile:max-w-[130px] max-w-[103px] mt-[-20px] rounded-full cursor-pointer"
+              className="w-full h-full mobile:max-w-[130px] max-w-[103px] desktop:max-w-[190px] desktop:w-[190px] mt-[-20px] rounded-full cursor-pointer"
               src={Rock}
               alt="Rock"
             />
@@ -59,7 +59,7 @@ function Home() {
                   setPaperState(true);
                   setShowResults(true);
                 }}
-                className="w-full h-full mobile:max-w-[130px] max-w-[103px] rounded-full cursor-pointer"
+                className="w-full h-full mobile:max-w-[130px] max-w-[103px] desktop:max-w-[190px] desktop:w-[190px] rounded-full cursor-pointer"
                 src={Paper}
                 alt="Paper"
               />
@@ -68,7 +68,7 @@ function Home() {
                   setScissorsState(true);
                   setShowResults(true);
                 }}
-                className="w-full h-full mobile:max-w-[130px] max-w-[103px] rounded-full cursor-pointer"
+                className="w-full h-full mobile:max-w-[130px] max-w-[103px] desktop:max-w-[190px] desktop:w-[190px] rounded-full cursor-pointer"
                 src={Scissors}
                 alt="Scissors"
               />
@@ -89,11 +89,12 @@ function Home() {
           setResultText={setResultText}
         />
       )}
+      <div className="tablet:flex-row-reverse tablet:items-center tablet:justify-between tablet:w-full max-w-[1440px] flex flex-col">
       <button
         onClick={() => {
           setShowRules(true);
         }}
-        className="text-[16px] font-[600] leading-[19.2px] tracking-[2.5px] text-[#FFF] border-[1px] rounded-lg px-[37px] py-[11px] outline-none"
+        className="text-[16px] font-[600] leading-[19.2px] tracking-[2.5px] text-[#FFF] border-[2px] rounded-lg px-[37px] py-[11px] outline-none"
       >
         RULES
       </button>
@@ -106,10 +107,11 @@ function Home() {
         onClick={() => {
           setBonusGame(!BonusGame);
         }}
-        className="text-[16px] font-[600] leading-[19.2px] tracking-[2.5px] text-[#FFF] border-[1px] rounded-lg px-[37px] py-[11px] outline-none mt-[20px]"
+        className="tablet:mt-0 text-[16px] font-[600] leading-[19.2px] tracking-[2.5px] text-[#FFF] border-[2px] rounded-lg px-[37px] py-[11px] outline-none mt-[20px]"
       >
         {BonusGame ? "RETURN" : "BONUS GAME"}
       </button>
+    </div>
     </div>
   );
 }
