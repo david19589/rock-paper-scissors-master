@@ -8,7 +8,7 @@ function Rules(props: {
   BonusGame: boolean;
 }) {
   return (
-    <div>
+    <>
       {props.showRules && (
         <div className="tablet:w-[100vw] tablet:h-[100vh] tablet:flex tablet:justify-center tablet:items-center tablet:absolute tablet:top-0 tablet:left-0 tablet:bg-[#00000069]">
           <div className="tablet:w-[400px] tablet:h-[415px] tablet:relative tablet:rounded-lg flex flex-col items-center justify-center absolute top-0 bottom-0 right-0 left-0 bg-[#FFF]">
@@ -41,7 +41,7 @@ function Rules(props: {
           </div>
         </div>
       )}
-    </div>
+    </>
   );
 }
 

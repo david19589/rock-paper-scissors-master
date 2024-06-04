@@ -4,6 +4,7 @@ import Scissors from "/src/assets/icon-scissors.png";
 import Spock from "/src/assets/icon-spock.png";
 import Lizard from "/src/assets/icon-lizard.png";
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 
 interface GameResultProps {
   rockState: boolean;
@@ -85,8 +86,8 @@ function GameResult({
     <>
       <div className="flex justify-center items-center mb-[62px] gap-[30px]">
         <div className="flex flex-col justify-center items-center">
-          <img
-            className="w-full h-full mobile:max-w-[130px] max-w-[79px] desktop:max-w-[190px] desktop:w-[190px] rounded-full cursor-default"
+          <motion.img
+            className="w-full h-full max-w-[90px] mobile:max-w-[96px] desktop:max-w-[190px] desktop:w-[190px] rounded-full cursor-default"
             src={
               rockState
                 ? Rock
@@ -113,16 +114,29 @@ function GameResult({
                 ? "Lizard"
                 : ""
             }
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
           />
-          <h1 className="desktop:translate-y-[-250px] desktop:text-[24px] desktop:leading-[32px] desktop:tracking-[3px] desktop:w-[285.38px] text-[11px] font-[700] leading-[16px] tracking-[1.88px] text-[#FFF] text-center h-[32px]">
+          <motion.h1
+            className="desktop:translate-y-[-250px] desktop:text-[24px] desktop:leading-[32px] desktop:tracking-[3px] desktop:w-[285.38px] text-[11px] font-[700] leading-[16px] tracking-[1.88px] text-[#FFF] text-center h-[32px] min-w-[84px]"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1 }}
+          >
             YOU PICKED
-          </h1>
+          </motion.h1>
         </div>
         <div className="hidden tablet:flex flex-col">
-          <h1 className="text-[56px] font-[700] leading-[67.2px] text-[#FFF] mb-[16px] text-center">
+          <motion.h1
+            className="text-[56px] font-[700] leading-[67.2px] text-[#FFF] mb-[16px] text-center"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1 }}
+          >
             {ResultText}
-          </h1>
-          <button
+          </motion.h1>
+          <motion.button
             onClick={() => {
               setShowResults(false);
               setRockState(false);
@@ -133,25 +147,43 @@ function GameResult({
               setResultText("");
             }}
             className="text-[16px] font-[600] leading-[19.2px] tracking-[2.5px] text-[#000] bg-[#FFF] border-[1px] rounded-lg px-[37px] py-[11px] outline-none"
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1 }}
           >
             PLAY AGAIN
-          </button>
+          </motion.button>
         </div>
         <div className="flex flex-col justify-center items-center">
-          <img
-            className="w-full h-full mobile:max-w-[130px] desktop:max-w-[190px] desktop:w-[190px] max-w-[79px] rounded-full cursor-default"
+          <motion.img
+            className="w-full h-full max-w-[90px] mobile:max-w-[96px] desktop:max-w-[190px] desktop:w-[190px] rounded-full cursor-default"
             src={housePick}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
           />
-          <h1 className="desktop:translate-y-[-250px] desktop:text-[24px] desktop:leading-[32px] desktop:tracking-[3px] desktop:w-full text-[11px] font-[700] leading-[16px] tracking-[1.88px] text-[#FFF] text-center w-[84px] ">
+          <motion.h1
+            className="desktop:translate-y-[-250px] desktop:text-[24px] desktop:leading-[32px] desktop:tracking-[3px] desktop:w-full text-[11px] font-[700] leading-[16px] tracking-[1.88px] text-[#FFF] text-center h-[32px] w-[84px]"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1 }}
+          >
             THE HOUSE PICKED
-          </h1>
+          </motion.h1>
         </div>
       </div>
       <div className="tablet:hidden flex flex-col items-center mb-[52px]">
-        <h1 className="text-[56px] font-[700] leading-[67.2px] text-[#FFF] mb-[16px] text-center">
+        <motion.h1
+          className="text-[56px] font-[700] leading-[67.2px] text-[#FFF] mb-[16px] text-center"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1 }}
+        >
           {ResultText}
-        </h1>
-        <button
+        </motion.h1>
+        <motion.button
           onClick={() => {
             setShowResults(false);
             setRockState(false);
@@ -162,9 +194,14 @@ function GameResult({
             setResultText("");
           }}
           className="text-[16px] font-[600] leading-[19.2px] tracking-[2.5px] text-[#000] bg-[#FFF] border-[1px] rounded-lg px-[37px] py-[11px] outline-none"
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1 }}
         >
           PLAY AGAIN
-        </button>
+        </motion.button>
       </div>
     </>
   );
