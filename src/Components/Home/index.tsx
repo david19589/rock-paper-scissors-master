@@ -49,7 +49,7 @@ function Home() {
       </div>
       {!showResults && (
         <motion.div
-          className="flex justify-center items-center mb-[140px] relative"
+          className="flex justify-center items-center mb-[65px] desktop:mb-[120px] relative"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5 }}
