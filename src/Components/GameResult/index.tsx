@@ -39,7 +39,7 @@ function GameResult({
   setResultText,
   BonusGame,
 }: GameResultProps) {
-  const [housePick, setHousePick] = useState<string>("");
+  const [housePick, setHousePick] = useState("");
 
   useEffect(() => {
     const images = BonusGame
@@ -82,38 +82,25 @@ function GameResult({
     BonusGame,
   ]);
 
+  const getStateValue = () => {
+    if (rockState) return { src: Rock, alt: "Rock" };
+    if (paperState) return { src: Paper, alt: "Paper" };
+    if (scissorsState) return { src: Scissors, alt: "Scissors" };
+    if (spockState) return { src: Spock, alt: "Spock" };
+    if (lizardState) return { src: Lizard, alt: "Lizard" };
+    return { src: "", alt: "" };
+  };
+
+  const { src, alt } = getStateValue();
+
   return (
     <>
       <div className="flex justify-center items-center mb-[62px] gap-[30px]">
         <div className="flex flex-col justify-center items-center">
           <motion.img
             className="w-full h-full max-w-[90px] mobile:max-w-[96px] desktop:max-w-[190px] desktop:w-[190px] rounded-full cursor-default"
-            src={
-              rockState
-                ? Rock
-                : paperState
-                ? Paper
-                : scissorsState
-                ? Scissors
-                : spockState
-                ? Spock
-                : lizardState
-                ? Lizard
-                : ""
-            }
-            alt={
-              rockState
-                ? "Rock"
-                : paperState
-                ? "Paper"
-                : scissorsState
-                ? "Scissors"
-                : spockState
-                ? "Spock"
-                : lizardState
-                ? "Lizard"
-                : ""
-            }
+            src={src}
+            alt={alt}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}

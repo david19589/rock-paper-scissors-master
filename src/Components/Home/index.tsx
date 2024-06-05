@@ -1,28 +1,26 @@
-import Logo from "/src/assets/logo.svg";
-import BonusLogo from "/src/assets/logo-bonus.svg";
 import Triangle from "/src/assets/bg-triangle.svg";
 import Pentagon from "/src/assets/bg-pentagon.svg";
 import Rock from "/src/assets/icon-rock.png";
 import Paper from "/src/assets/icon-paper.png";
 import Scissors from "/src/assets/icon-scissors.png";
-import Lizard from "/src/assets/icon-lizard.png";
-import Spock from "/src/assets/icon-spock.png";
 import { useEffect, useState } from "react";
 import Rules from "../Rules";
 import GameResult from "../GameResult";
 import { motion } from "framer-motion";
+import Header from "../Header";
+import BonusGameComponent from "../BonusGameComponent";
 
 function Home() {
-  const [Score, setScore] = useState<number>(0);
-  const [showRules, setShowRules] = useState<boolean>(false);
-  const [BonusGame, setBonusGame] = useState<boolean>(false);
-  const [ResultText, setResultText] = useState<string>("");
-  const [rockState, setRockState] = useState<boolean>(false);
-  const [paperState, setPaperState] = useState<boolean>(false);
-  const [scissorsState, setScissorsState] = useState<boolean>(false);
-  const [spockState, setSpockState] = useState<boolean>(false);
-  const [lizardState, setLizardState] = useState<boolean>(false);
-  const [showResults, setShowResults] = useState<boolean>(false);
+  const [Score, setScore] = useState(0);
+  const [showRules, setShowRules] = useState(false);
+  const [BonusGame, setBonusGame] = useState(false);
+  const [ResultText, setResultText] = useState("");
+  const [rockState, setRockState] = useState(false);
+  const [paperState, setPaperState] = useState(false);
+  const [scissorsState, setScissorsState] = useState(false);
+  const [spockState, setSpockState] = useState(false);
+  const [lizardState, setLizardState] = useState(false);
+  const [showResults, setShowResults] = useState(false);
 
   useEffect(() => {
     if (ResultText === "YOU WIN") {
@@ -30,23 +28,17 @@ function Home() {
     }
   }, [ResultText]);
 
+  const allPlayingStates = [
+    rockState,
+    paperState,
+    scissorsState,
+    spockState,
+    lizardState,
+  ].every((state) => !state);
+
   return (
     <div className="flex items-center flex-col pt-[32px] pb-[56px] px-[32px] w-[100vw] h-[100vh]">
-      <div className="flex justify-between items-center border-[3px] border-slate-500 rounded-lg w-full max-w-[700px] pl-[24px] pr-[12px] py-[24px] mb-[115px]">
-        <img
-          className="w-[116px] tablet:w-max"
-          src={BonusGame ? BonusLogo : Logo}
-          alt="Logo"
-        />
-        <div className="tablet:w-[150px] tablet:h-[114px] flex justify-center items-center flex-col w-[80px] h-[72px] rounded-lg bg-[#FFF] overflow-hidden">
-          <h1 className="tablet:text-[16px] tablet:leading-[19.2px] tablet:tracking-[2.5px] text-[10px] font-[600] leading-[12px] tracking-[1.56px] text-[#2A45C2]">
-            SCORE
-          </h1>
-          <span className="tablet:text-[64px] tablet:leading-[64px] text-[40px] font-[700] leading-[40px] text-[#000]">
-            {Score}
-          </span>
-        </div>
-      </div>
+      <Header BonusGame={BonusGame} Score={Score} />
       {!showResults && (
         <motion.div
           className="flex justify-center items-center mb-[65px] desktop:mb-[120px] relative"
@@ -61,32 +53,11 @@ function Home() {
           />
           <div className="flex flex-col-reverse justify-center items-center">
             {BonusGame && (
-              <>
-                <motion.img
-                  onClick={() => {
-                    setSpockState(true);
-                    setShowResults(true);
-                  }}
-                  className="absolute mobile:top-[15%] mobile:left-[-10%] top-[20%] left-[-15%] desktop:left-[-15%] w-full max-w-[90px] mobile:max-w-[96px] desktop:max-w-[120px] desktop:w-[120px] rounded-full cursor-pointer"
-                  src={Spock}
-                  alt="Spock"
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.5 }}
-                />
-                <motion.img
-                  onClick={() => {
-                    setLizardState(true);
-                    setShowResults(true);
-                  }}
-                  className="absolute mobile:top-[75%] mobile:right-[65%] top-[75%] right-[55%] desktop:right-[60%] w-full max-w-[90px] mobile:max-w-[96px] desktop:max-w-[120px] desktop:w-[120px] rounded-full cursor-pointer"
-                  src={Lizard}
-                  alt="Lizard"
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.5 }}
-                />
-              </>
+              <BonusGameComponent
+                setSpockState={setSpockState}
+                setLizardState={setLizardState}
+                setShowResults={setShowResults}
+              />
             )}
             <motion.img
               onClick={() => {
@@ -160,45 +131,37 @@ function Home() {
         />
       )}
       <div className="tablet:flex-row-reverse tablet:items-center tablet:justify-between tablet:w-full max-w-[1440px] flex flex-col">
-        {!rockState &&
-          !paperState &&
-          !scissorsState &&
-          !spockState &&
-          !lizardState && (
-            <motion.button
-              onClick={() => {
-                setShowRules(true);
-              }}
-              className="text-[16px] font-[600] leading-[19.2px] tracking-[2.5px] text-[#FFF] border-[2px] rounded-lg px-[37px] py-[11px] outline-none"
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-            >
-              RULES
-            </motion.button>
-          )}
+        {allPlayingStates && (
+          <motion.button
+            onClick={() => {
+              setShowRules(true);
+            }}
+            className="text-[16px] font-[600] leading-[19.2px] tracking-[2.5px] text-[#FFF] border-[2px] rounded-lg px-[37px] py-[11px] outline-none"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            RULES
+          </motion.button>
+        )}
         <Rules
           showRules={showRules}
           BonusGame={BonusGame}
           setShowRules={setShowRules}
         />
-        {!rockState &&
-          !paperState &&
-          !scissorsState &&
-          !spockState &&
-          !lizardState && (
-            <motion.button
-              onClick={() => {
-                setBonusGame(!BonusGame);
-              }}
-              className="tablet:mt-0 text-[16px] font-[600] leading-[19.2px] tracking-[2.5px] text-[#FFF] border-[2px] rounded-lg px-[37px] py-[11px] outline-none mt-[20px]"
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-            >
-              {BonusGame ? "RETURN" : "BONUS GAME"}
-            </motion.button>
-          )}
+        {allPlayingStates && (
+          <motion.button
+            onClick={() => {
+              setBonusGame(!BonusGame);
+            }}
+            className="tablet:mt-0 text-[16px] font-[600] leading-[19.2px] tracking-[2.5px] text-[#FFF] border-[2px] rounded-lg px-[37px] py-[11px] outline-none mt-[20px]"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            {BonusGame ? "RETURN" : "BONUS GAME"}
+          </motion.button>
+        )}
       </div>
     </div>
   );
