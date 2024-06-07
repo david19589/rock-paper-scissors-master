@@ -3,9 +3,9 @@ import Spock from "/src/assets/icon-spock.png";
 import Lizard from "/src/assets/icon-lizard.png";
 
 function BonusGameComponent(props: {
-  setSpockState: React.Dispatch<React.SetStateAction<boolean>>;
-  setLizardState: React.Dispatch<React.SetStateAction<boolean>>;
-  setShowResults: React.Dispatch<React.SetStateAction<boolean>>;
+  setSpockState: (status: boolean) => void;
+  setLizardState: (status: boolean) => void;
+  setShowResults: (status: boolean) => void;
 }) {
   return (
     <>

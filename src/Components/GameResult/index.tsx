@@ -8,18 +8,18 @@ import { motion } from "framer-motion";
 
 interface GameResultProps {
   rockState: boolean;
-  setRockState: React.Dispatch<React.SetStateAction<boolean>>;
+  setRockState: (status: boolean) => void;
   paperState: boolean;
-  setPaperState: React.Dispatch<React.SetStateAction<boolean>>;
+  setPaperState: (status: boolean) => void;
   scissorsState: boolean;
-  setScissorsState: React.Dispatch<React.SetStateAction<boolean>>;
-  setShowResults: React.Dispatch<React.SetStateAction<boolean>>;
+  setScissorsState: (status: boolean) => void;
+  setShowResults: (status: boolean) => void;
   ResultText: string;
-  setResultText: React.Dispatch<React.SetStateAction<string>>;
+  setResultText: (status: string) => void;
   spockState: boolean;
-  setSpockState: React.Dispatch<React.SetStateAction<boolean>>;
+  setSpockState: (status: boolean) => void;
   lizardState: boolean;
-  setLizardState: React.Dispatch<React.SetStateAction<boolean>>;
+  setLizardState: (status: boolean) => void;
   BonusGame: boolean;
 }
 

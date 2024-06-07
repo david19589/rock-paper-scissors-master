@@ -4,7 +4,7 @@ import BonusGameRules from "/src/assets/image-rules-bonus.svg";
 
 function Rules(props: {
   showRules: boolean;
-  setShowRules: React.Dispatch<React.SetStateAction<boolean>>;
+  setShowRules: (status: boolean) => void;
   BonusGame: boolean;
 }) {
   return (
